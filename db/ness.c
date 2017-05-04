@@ -43,6 +43,14 @@ int ness_db_set(void *nessdb, char *k, uint32_t ksize, char *v, uint32_t vsize)
 	return db_set(db, &kmsg, &vmsg);
 }
 
+int ness_db_del(void *nessdb, char *k, uint32_t ksize)
+{
+	struct msg kmsg = {.data = k, .size = ksize};
+
+	struct nessdb *db = (struct nessdb*)nessdb;
+	return db_del(db, &kmsg);
+}
+
 int ness_env_set_cache_size(void *nessenv, uint64_t cache_size)
 {
 	struct env *e = (struct env*)nessenv;
